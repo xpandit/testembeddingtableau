@@ -12,21 +12,21 @@
 
         function initViz() {
             var containerDiv = document.getElementById("vizContainer"),
-                url = "https://public.tableau.com/views/RegionalSampleWorkbook/College",
+                url = "https://dub01.online.tableau.com/#/site/xpanditservices/views/PorData-DashboardMonitorizaoTcnico/DashboardMonitorizao?:iid=2",
                 options = {
-                    "Academic Year": "",
+                    "Estado": "",
                     hideTabs: true
                 };
 
             viz = new tableau.Viz(containerDiv, url, options);
         }
 
-        function yearFilter(year) {
+        function estadoFilter(estado) {
             var sheet = viz.getWorkbook().getActiveSheet();
-            if (year === "") {
-                sheet.clearFilterAsync("Academic Year");
+            if (estado === "") {
+                sheet.clearFilterAsync("Estado");
             } else {
-                sheet.applyFilterAsync("Academic Year", year, tableau.FilterUpdateType.REPLACE);
+                sheet.applyFilterAsync("Estado", estado, tableau.FilterUpdateType.REPLACE);
             }
         }
     </script>
@@ -35,10 +35,10 @@
 <body onload="initViz();">
     <div id="vizContainer" style="width:800px; height:700px;"></div>
     <div id="controls" style="padding:20px;">
-        Year: <select id="changeYear" onchange="yearFilter(value);">
+        estado: <select id="changeestado" onchange="estadoFilter(value);">
             <option value="">All</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
+            <option value="Erro">Erro</option>
+            <option value="Sucesso">Sucess</option>
         </select>
     </div>
 </body>
